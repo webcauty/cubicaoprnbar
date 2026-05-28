@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cúbica Coctelería Premium</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#050505;
+color:#fff;
+overflow-x:hidden;
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.8)),
+url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1600&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:40px;
+text-align:center;
+}
+
+.hero-content{
+max-width:900px;
+animation:fade 1s ease;
+}
+
+.hero h1{
+font-size:80px;
+color:#f4b63f;
+margin-bottom:10px;
+font-family:cursive;
+}
+
+.hero h2{
+font-size:55px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:22px;
+line-height:1.6;
+margin-bottom:30px;
+color:#ddd;
+}
+
+.btn{
+display:inline-block;
+padding:15px 35px;
+background:#f4b63f;
+color:#000;
+font-weight:bold;
+border-radius:50px;
+text-decoration:none;
+transition:.3s;
+margin:10px;
+}
+
+.btn:hover{
+transform:scale(1.08);
+background:#fff;
+}
+
+section{
+padding:90px 8%;
+}
+
+.section-title{
+text-align:center;
+font-size:45px;
+margin-bottom:50px;
+color:#f4b63f;
+}
+
+/* PRODUCTOS */
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.card{
+background:#111;
+border-radius:25px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,.5);
+transition:.4s;
+position:relative;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card img{
+width:100%;
+height:280px;
+object-fit:cover;
+}
+
+.card-content{
+padding:25px;
+}
+
+.card-content h3{
+font-size:28px;
+margin-bottom:10px;
+color:#f4b63f;
+}
+
+.price{
+font-size:28px;
+font-weight:bold;
+margin:15px 0;
+}
+
+.qty{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:15px;
+}
+
+.qty input{
+width:80px;
+padding:10px;
+border:none;
+border-radius:10px;
+font-size:18px;
+text-align:center;
+}
+
+.order-btn{
+width:100%;
+padding:15px;
+border:none;
+background:#f4b63f;
+color:#000;
+font-size:18px;
+font-weight:bold;
+border-radius:15px;
+cursor:pointer;
+transition:.3s;
+}
+
+.order-btn:hover{
+background:#fff;
+transform:scale(1.03);
+}
+
+/* PROMOS */
+
+.promos{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.promo-box{
+background:linear-gradient(135deg,#f4b63f,#ffdf8f);
+color:#000;
+padding:40px;
+border-radius:25px;
+text-align:center;
+font-weight:bold;
+box-shadow:0 10px 20px rgba(0,0,0,.4);
+}
+
+.promo-box h3{
+font-size:35px;
+margin-bottom:15px;
+}
+
+/* INFO */
+
+.info{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.info-card{
+background:#111;
+padding:35px;
+border-radius:25px;
+text-align:center;
+}
+
+.info-card i{
+font-size:50px;
+color:#f4b63f;
+margin-bottom:20px;
+}
+
+/* FOOTER */
+
+footer{
+background:#000;
+padding:50px 8%;
+text-align:center;
+border-top:2px solid #f4b63f;
+}
+
+footer p{
+margin-top:10px;
+color:#aaa;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+right:25px;
+bottom:25px;
+width:70px;
+height:70px;
+background:#25d366;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:35px;
+color:#fff;
+text-decoration:none;
+box-shadow:0 0 25px rgba(37,211,102,.8);
+animation:pulse 1.5s infinite;
+z-index:999;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.1);}
+100%{transform:scale(1);}
+}
+
+/* MODAL */
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.8);
+z-index:9999;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.modal-content{
+background:#111;
+padding:40px;
+border-radius:25px;
+max-width:600px;
+width:100%;
+text-align:center;
+position:relative;
+animation:fade .5s ease;
+}
+
+.modal-content h2{
+color:#f4b63f;
+margin-bottom:20px;
+font-size:35px;
+}
+
+.modal-content p{
+line-height:1.8;
+color:#ddd;
+font-size:18px;
+}
+
+.close{
+position:absolute;
+right:20px;
+top:10px;
+font-size:35px;
+cursor:pointer;
+color:#fff;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:50px;
+}
+
+.hero h2{
+font-size:35px;
+}
+
+.section-title{
+font-size:35px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>Cúbica</h1>
+
+<h2>OPEN BAR</h2>
+
+<p>
+Coctelería premium para todos los días 🍹  
+Cócteles por litro y vaso con sabores únicos, frescos y preparados al momento.
+</p>
+
+<a href="#productos" class="btn">Ver Productos</a>
+
+<a href="#contacto" class="btn">Contáctanos</a>
+
+</div>
+
+</section>
+
+<!-- PRODUCTOS -->
+
+<section id="productos">
+
+<h2 class="section-title">Nuestros Cócteles</h2>
+
+<div class="products">
+
+<!-- PRODUCTO -->
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>Pisco Sour</h3>
+
+<p>El clásico elegante y refrescante.</p>
+
+<div class="price">S/25 Litro</div>
+
+<div class="qty">
+<label>Cantidad:</label>
+<input type="number" min="1" value="1" id="qty1">
+</div>
+
+<button class="order-btn" onclick="pedir('Pisco Sour',25,'qty1')">
+Pedir por WhatsApp
+</button>
+
+</div>
+
+</div>
+
+<!-- PRODUCTO -->
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>Pantera Rosa</h3>
+
+<p>Sabor dulce, tropical y atrevido.</p>
+
+<div class="price">S/25 Litro</div>
+
+<div class="qty">
+<label>Cantidad:</label>
+<input type="number" min="1" value="1" id="qty2">
+</div>
+
+<button class="order-btn" onclick="pedir('Pantera Rosa',25,'qty2')">
+Pedir por WhatsApp
+</button>
+
+</div>
+
+</div>
+
+<!-- PRODUCTO -->
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1516997121675-4c2d1684aa3e?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>Blue Hawái</h3>
+
+<p>Color intenso y sabor paradisíaco.</p>
+
+<div class="price">S/25 Litro</div>
+
+<div class="qty">
+<label>Cantidad:</label>
+<input type="number" min="1" value="1" id="qty3">
+</div>
+
+<button class="order-btn" onclick="pedir('Blue Hawái',25,'qty3')">
+Pedir por WhatsApp
+</button>
+
+</div>
+
+</div>
+
+<!-- PRODUCTO -->
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1517620430776-0ec904756579?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>Mojito</h3>
+
+<p>Refrescante con limón y hierbabuena.</p>
+
+<div class="price">2 x S/55</div>
+
+<div class="qty">
+<label>Cantidad:</label>
+<input type="number" min="1" value="1" id="qty4">
+</div>
+
+<button class="order-btn" onclick="pedir('Mojito',55,'qty4')">
+Pedir por WhatsApp
+</button>
+
+</div>
+
+</div>
+
+<!-- PRODUCTO -->
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1575650772417-e6b418b0d38b?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>Piña Colada</h3>
+
+<p>La mezcla perfecta de piña y coco.</p>
+
+<div class="price">2 x S/55</div>
+
+<div class="qty">
+<label>Cantidad:</label>
+<input type="number" min="1" value="1" id="qty5">
+</div>
+
+<button class="order-btn" onclick="pedir('Piña Colada',55,'qty5')">
+Pedir por WhatsApp
+</button>
+
+</div>
+
+</div>
+
+<!-- VASOS -->
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>Vasos 16 Onzas</h3>
+
+<p>Perfectos para cualquier cóctel.</p>
+
+<div class="price">S/12</div>
+
+<div class="qty">
+<label>Cantidad:</label>
+<input type="number" min="1" value="1" id="qty6">
+</div>
+
+<button class="order-btn" onclick="pedir('Vasos 16 Onzas',12,'qty6')">
+Pedir por WhatsApp
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PROMOS -->
+
+<section>
+
+<h2 class="section-title">Promociones</h2>
+
+<div class="promos">
+
+<div class="promo-box">
+<h3>2 Litros</h3>
+<p>S/45.00</p>
+</div>
+
+<div class="promo-box">
+<h3>3 Litros</h3>
+<p>S/70.00</p>
+</div>
+
+<div class="promo-box">
+<h3>4 Litros</h3>
+<p>Delivery Gratis 🚚</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- INFORMACIÓN -->
+
+<section id="contacto">
+
+<h2 class="section-title">Información</h2>
+
+<div class="info">
+
+<div class="info-card">
+
+<i class="fa-solid fa-clock"></i>
+
+<h3>Horario</h3>
+
+<p>
+Lunes a Domingo<br>
+5PM a 11PM
+</p>
+
+</div>
+
+<div class="info-card">
+
+<i class="fa-solid fa-location-dot"></i>
+
+<h3>Ubicación</h3>
+
+<p>
+Urbanización Santa María<br>
+Edif C-10<br>
+Ref: Más abajo del Cortec
+</p>
+
+</div>
+
+<div class="info-card">
+
+<i class="fa-brands fa-whatsapp"></i>
+
+<h3>Pedidos</h3>
+
+<p>
+Yape o Plim<br>
+965217948
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- BOTONES -->
+
+<section>
+
+<h2 class="section-title">Más Información</h2>
+
+<div style="text-align:center;">
+
+<button class="btn" onclick="abrirModal('privacidad')">
+Políticas de Privacidad
+</button>
+
+<button class="btn" onclick="abrirModal('nosotros')">
+Nosotros
+</button>
+
+<button class="btn" onclick="abrirModal('contacto2')">
+Contáctanos
+</button>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<h2>Cúbica Coctelería Premium</h2>
+
+<p>
+Cócteles premium preparados con pasión 🍹
+</p>
+
+<p>
+© 2026 Todos los derechos reservados
+</p>
+
+</footer>
+
+<!-- WHATSAPP -->
+
+<a class="whatsapp" href="https://wa.me/51965217948" target="_blank">
+
+<i class="fa-brands fa-whatsapp"></i>
+
+</a>
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+<div class="modal-content">
+
+<span class="close" onclick="cerrarModal()">&times;</span>
+
+<h2 id="modalTitle"></h2>
+
+<p id="modalText"></p>
+
+</div>
+
+</div>
+
+<script>
+
+function pedir(producto,precio,qtyId){
+
+let cantidad=document.getElementById(qtyId).value;
+
+let total=precio*cantidad;
+
+let mensaje=`Hola 🍹 quiero pedir:
+
+Producto: ${producto}
+Cantidad: ${cantidad}
+Total Aproximado: S/${total}
+
+¿Me ayudas con el pedido?`;
+
+let url=`https://wa.me/51965217948?text=${encodeURIComponent(mensaje)}`;
+
+window.open(url,'_blank');
+
+}
+
+function abrirModal(tipo){
+
+const modal=document.getElementById('modal');
+const title=document.getElementById('modalTitle');
+const text=document.getElementById('modalText');
+
+modal.style.display='flex';
+
+if(tipo==='privacidad'){
+
+title.innerHTML='Políticas de Privacidad';
+
+text.innerHTML=`
+En Cúbica Coctelería Premium respetamos totalmente la privacidad de nuestros clientes.
+Toda la información compartida en pedidos o contacto será utilizada únicamente para brindar atención personalizada, coordinar entregas y mejorar tu experiencia.
+No compartimos información con terceros y protegemos cada dato de nuestros clientes.
+`;
+
+}
+
+if(tipo==='nosotros'){
+
+title.innerHTML='Sobre Nosotros';
+
+text.innerHTML=`
+Somos una marca apasionada por la coctelería premium.
+Nuestro objetivo es llevar experiencias únicas, elegantes y deliciosas a cada reunión, fiesta o momento especial.
+Cada bebida es preparada cuidadosamente con ingredientes de calidad y una presentación increíble.
+`;
+
+}
+
+if(tipo==='contacto2'){
+
+title.innerHTML='Contáctanos';
+
+text.innerHTML=`
+📍 Urbanización Santa María Edif C-10
+
+📲 WhatsApp: 965217948
+
+🕔 Atención:
+Lunes a Domingo de 5PM a 11PM
+
+Gracias por confiar en Cúbica 🍹
+`;
+
+}
+
+}
+
+function cerrarModal(){
+document.getElementById('modal').style.display='none';
+}
+
+window.onclick=function(e){
+
+const modal=document.getElementById('modal');
+
+if(e.target==modal){
+modal.style.display='none';
+}
+
+}
+
+</script>
+
+</body>
+</html>
